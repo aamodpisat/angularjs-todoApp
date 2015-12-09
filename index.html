@@ -6,6 +6,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 </head>
+<style>
+    .done-true{
+        text-decoration: line-through;
+        color: grey;
+    }
+</style>
 <body ng-app="myApp">
 <div id="container" style="margin: 0 auto; width: 960px;" data-ng-controller="TaskController"
      data-ng-init="init()">
@@ -23,12 +29,11 @@
             <div class="panel-body">
                 <ol class="list-group" style="padding-left:15px;">
                     <li ng-repeat="getList in getLists track by $index" data-ng-hide="checked"
-                        style="padding: 5px;">
-                        <span>{{getList.title}}</span>
-                        <input todo type="checkbox" ng-model="getList.status" style="float: right;"
-                               uid="{{getList.uid}}"
-                               ng-click="click11()" ng-change="meChange()"
-                               status="{{getList.status || false}}">
+                        style="padding: 5px;"  class="done-{{getList.isComplete}}">
+                        <input type="checkbox" style="float: right;" data-ng-click="setCompleted(getList.uid)"
+                              >
+                        <input type="submit" value="Delete this Task" class="btn-danger"
+                               data-ng-click="deleteTask(getList.uid)" style="float: right; margin-right: 10px;">
                     </li>
                 </ol>
             </div>
