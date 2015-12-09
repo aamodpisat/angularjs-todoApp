@@ -58,7 +58,6 @@ app.service('toDoService',['$http',function($http){
                 mainData= response.data.entry.title;
                 alert("Tasks added to lists");
             }, function errorCallback(response){
-                console.log();
             });
 
     }

@@ -2,7 +2,6 @@
 <html>
 <head>
     <title></title>
-    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -40,8 +39,6 @@
                         style="padding: 5px;" class="done-{{getList.isComplete}}">
                         <span class="done-{{getList.isComplete}}">{{getList.title}}</span>
                         <input type="checkbox" style="float: right;" data-ng-click="setCompleted(getList.uid)">
-                        <!--<input type="submit" value="Delete this Task" class="btn-danger"-->
-                        <!--data-ng-click="deleteTask(getList.uid)" style="float: right; margin-right: 10px;">-->
                         <span class="glyphicon glyphicon-remove-circle" data-ng-click="deleteTask(getList.uid)" style="float:
                         right;margin-right: 10px; cursor: pointer;"></span>
                     </li>
