@@ -2,12 +2,20 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
     <script type="text/javascript" src="js/script.js"></script>
 </head>
 <style>
-    .done-true{
+    .done-true {
         text-decoration: line-through;
         color: grey;
     }
@@ -29,12 +37,13 @@
             <div class="panel-body">
                 <ol class="list-group" style="padding-left:15px;">
                     <li ng-repeat="getList in getLists track by $index" data-ng-hide="checked"
-                        style="padding: 5px;"  class="done-{{getList.isComplete}}">
+                        style="padding: 5px;" class="done-{{getList.isComplete}}">
                         <span class="done-{{getList.isComplete}}">{{getList.title}}</span>
-                        <input type="checkbox" style="float: right;" data-ng-click="setCompleted(getList.uid)"
-                              >
-                        <input type="submit" value="Delete this Task" class="btn-danger"
-                               data-ng-click="deleteTask(getList.uid)" style="float: right; margin-right: 10px;">
+                        <input type="checkbox" style="float: right;" data-ng-click="setCompleted(getList.uid)">
+                        <!--<input type="submit" value="Delete this Task" class="btn-danger"-->
+                        <!--data-ng-click="deleteTask(getList.uid)" style="float: right; margin-right: 10px;">-->
+                        <span class="glyphicon glyphicon-remove-circle" data-ng-click="deleteTask(getList.uid)" style="float:
+                        right;margin-right: 10px; cursor: pointer;"></span>
                     </li>
                 </ol>
             </div>

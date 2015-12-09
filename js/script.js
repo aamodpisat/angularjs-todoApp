@@ -118,6 +118,7 @@ app.service('toDoService',['$http',function($http){
             url:'https://api.contentstack.io/v2/forms/todolists/entries/'+ delete_id,
             headers: credentials
         }).then(function success(res){
+            window.location.reload();
             alert("Task Deleted");
         }, function error(res){
             console.log("Error in deleting task");
