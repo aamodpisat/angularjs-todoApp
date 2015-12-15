@@ -34,7 +34,7 @@
             <input type="submit" class="btn-success" data-ng-click="task.viewList()" value="View Tasks">
         </form>
         <div class="panel panel-default" style="margin-top: 5px; padding: 15px;">
-            <div class="page-heading"> Tasks need to be done:{{vm.toDoList}}</div>
+            <div class="page-heading"> Tasks need to be done:</div>
             <div class="panel-body">
                 <ol class="list-group" style="padding-left:15px;">
                     <li ng-repeat="getList in getLists track by $index" data-ng-hide="checked"
