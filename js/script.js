@@ -1,80 +1,79 @@
 /**
  * Created by Aamod Pisat on 07-12-2015.
  */
-var app= angular.module("myApp",[]);
+angular
+    .module('myApp', [])
+    .controller('TaskController', TaskController)
+    .service('toDoService', toDoService);
 
-app.controller("TaskController",['$scope','toDoService', function($scope,toDoService){
-    //Add Task List
-    $scope.addToDoList= function(){
-        $scope.toDoList=toDoService.addToDo($scope.toDoText);
-        $scope.toDoText="";
-    };
-    //View List
-    $scope.viewList= function(){
-        $scope.getLists= toDoService.viewData();
-    };
-    //First time API call for view Data
-    $scope.init=function(){
-        $scope.getLists= toDoService.viewData();
-    };
-    //To set the task done when checked
-     $scope.setCompleted =function(item){
-         this.key_id= item;
-         toDoService.changeStatus(this.key_id);
-     };
-    //Delete the task
-    $scope.deleteTask = function(item){
-      toDoService.deleteRow(item);
+//Task Controller
+TaskController.$inject = ['$scope','toDoService'];
+
+function TaskController($scope,toDoService) {
+    /* jshint validthis: true */
+    var vm=this;
+    vm.addToDoList = addToDoList;
+    vm.viewList = viewList;
+    vm.deleteTask = deleteTask;
+    vm.init = init;
+    vm.setCompleted= setCompleted;
+
+    function addToDoList() {
+            toDoService.addData(vm.toDoText);
+            vm.toDoText = '';
+    }
+    function viewList() {
+            $scope.getLists= toDoService.viewData();
     }
 
-}]);
+    function deleteTask(item){
+            toDoService.deleteData(item);
+    }
 
+    function init(){
+            $scope.getLists= toDoService.viewData();
+    }
 
-//Services
-app.service('toDoService',['$http',function($http){
+    function setCompleted(item){
+            toDoService.updateData(item);
+    }
+}
 
-    //Config
-    var credentials={
-        "site_api_key":"blt9aca695e2d04c4ba",
-        "authtoken":"bltd66f777989610f87f9b8bb4d"
+//toDoService
+toDoService.$inject=['$http'];
+function toDoService($http) {
+
+    //Credentials details
+    var credentials = {
+        "site_api_key": "blt9aca695e2d04c4ba",
+        "authtoken": "bltf87660adffb069f3fa66fb20"
     };
 
-    //Function for calling REST API
-    function addService(entries){
-        var mainData="";
-        $http({
-            method:'POST',
-            url:'https://api.contentstack.io/v2/forms/todolists/entries',
-            headers:credentials,
-            contentType:'application/json',
-            data: {
-                "entry":{
-                    "title":entries,
-                    "iscompleted": false
+    //Add service
+    this.addData = function (data) {
+            $http({
+                method: 'POST',
+                url: 'https://api.contentstack.io/v2/forms/todolists/entries',
+                headers: credentials,
+                contentType: 'application/json',
+                data: {
+                    "entry": {
+                        "title": data,
+                        "iscompleted": false
+                    }
                 }
-            }
-        })
-            .then(function successCallBack(response){
-                mainData= response.data.entry.title;
-                alert("Tasks added to lists");
-            }, function errorCallback(response){
-            });
-
-    }
-
-    //Add Data
-    this.addToDo= function(toDoText){
-        var a=[];
-        if(toDoText==""){
-            alert("Please insert Tasks");
-        }else{
-            return addService(toDoText);
-        }
+            })
+                .then(function successCallBack(response) {
+                    mainData = response.data.entry.title;
+                    alert("Tasks added to lists");
+                }, function errorCallback(response) {
+                    console.log("error");
+                });
     };
 
-    //View Data
-    this.viewData= function(toDoText){
-        var entriesArr=[], temp=[];
+    //Get Service
+    this.viewData= function(){
+        var entriesArr=[];
         $http({
             method:'GET',
             url:'https://api.contentstack.io:443/v2/forms/todolists/entries',
@@ -91,9 +90,23 @@ app.service('toDoService',['$http',function($http){
         return entriesArr;
     };
 
-    //Change status of task
-    this.changeStatus =function(data_key){
-        var keys_id= data_key;
+    //Delete Service
+    this.deleteData=function(item){
+        $http({
+            method:'DELETE',
+            url:'https://api.contentstack.io/v2/forms/todolists/entries/'+ item,
+            headers: credentials
+        }).then(function success(res){
+            alert("Task Deleted");
+            window.location.reload();
+        }, function error(res){
+            console.log("Error in deleting task");
+        });
+    };
+
+    //Update Service
+    this.updateData = function(item){
+        var keys_id= item;
         $http({
             method:'PUT',
             url:'https://api.contentstack.io/v2/forms/todolists/entries/'+ keys_id,
@@ -109,21 +122,8 @@ app.service('toDoService',['$http',function($http){
            console.log("Error in changing status");
         });
     };
+}
 
-    //Delete Task
-    this.deleteRow =function(delete_id){
-        $http({
-            method:'DELETE',
-            url:'https://api.contentstack.io/v2/forms/todolists/entries/'+ delete_id,
-            headers: credentials
-        }).then(function success(res){
-            window.location.reload();
-            alert("Task Deleted");
-        }, function error(res){
-            console.log("Error in deleting task");
-        });
-    }
-}]);
 
 
 
