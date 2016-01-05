@@ -38,13 +38,12 @@
             <div class="page-heading"> Tasks need to be done:</div>
             <div class="panel-body">
                 <ol class="list-group" style="padding-left:15px;">
-                    <li ng-repeat="getList in getLists track by $index" data-ng-hide="checked"
-                        style="padding: 5px;" class="done-{{getList.isComplete}}">
+                    <li ng-repeat="getList in getLists track by $index" style="padding: 5px;"
+                        class="done-{{getList.isComplete}}">
                         <span class="done-{{getList.isComplete}}">{{getList.title}}</span>
                         <input type="checkbox" style="float: right;" data-ng-click="task.setCompleted(getList.uid)">
                         <span class="glyphicon glyphicon-remove-circle" data-ng-click="task.deleteTask(getList.uid)"
-                              style="float:
-                        right;margin-right: 10px; cursor: pointer;"></span>
+                              style="float:right;margin-right: 10px; cursor: pointer;"></span>
                     </li>
                 </ol>
             </div>
