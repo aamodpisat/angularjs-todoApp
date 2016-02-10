@@ -122,7 +122,7 @@
             }).then(function successfn(res){
                 window.location.reload();
             }, function errorfn(res){
-               console.log("Error");
+                
             });
         };
     }
