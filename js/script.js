@@ -69,6 +69,7 @@
                 })
                     .then(function successCallBack(response) {
                         alert("Tasks added to lists");
+                        location.reload();
                     }, function errorCallback(response) {
                         console.log("error");
                     });
