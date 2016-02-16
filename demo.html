@@ -2,16 +2,39 @@
 <html>
 <head>
 	<title>Todolist App in directory</title>
-	  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/demo.js"></script>
 </head>
 <body>
 	
-		Title: <input type="text"  placeholder="enter title" id="title"><br><br>
-		Description: <input type="multiline" placeholder="Enter description" id="description"><br> <br>
-		Start date: <input type="date" id="start_date"><br><br>
-		End Date: <input type="date" id="end_date"><br><br>
-		<input type="submit" onclick="add()" value="Add Task"><br><br>
+		<div class="form-group" role="form" style="width:960px; margin: 0 auto;">
+			<h2 align="center">  TodoLists App </h2>
+			<label for="title" class="control-label col-sm-2">Title:</label>
+			<div class="col-sm-10">
+				 <input type="text"  placeholder="enter title" id="title" class="form-control">
+			</div><br>
+
+			 <label for="description" class="control-label col-sm-2">Description:</label>
+			 <div class="col-sm-10">
+			 	<input type="textarea" placeholder="Enter description" id="description" class="form-control">
+			 </div><br>
+
+			 <label for="start_date" class="control-label col-sm-2">Start date: </label>
+			 <div class="col-sm-10">
+			 	<input type="date" id="start_date" class="form-control">
+			 </div><br>
+
+			<label for="end_date" class="control-label col-sm-2">End date: </label>
+			<div class="col-sm-10">
+				<input type="date" id="end_date" class="form-control"><br>
+			</div><br>
+
+			<input type="submit" onclick="add()" value="Add Task" class="btn btn-default"><br><br>
+		</div>
+
+		
 		<div id= "box">
 		</div>
 </body>

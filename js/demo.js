@@ -3,7 +3,7 @@
 		task= [];
   		
   		// add function...
-  	function add (arg) {
+  	function add () {
   		var title= document.getElementById('title').value,
 			description= document.getElementById('description').value,
 			start_date= document.getElementById('start_date').value,
@@ -41,6 +41,9 @@
 			  				alert("Sorry, the END date you specify is already gone... Thats mean your task is completed...")
 			  				flag = false;
 
+			  			} else if(start_date > end_date){
+			  				alert("Ooops!!! Your end time is set before start time...!!! Can you please correct it?");	
+			  				flag = false;
 			  			}
 			  			else{
 			  				flag = true;
@@ -50,7 +53,9 @@
 			  	}
   			
   			if(formValidate){
+
   				var status;
+  				
   				if(start_date==date){
   					status = 'ACTIVE';
   				}
@@ -60,8 +65,10 @@
   				if(start_date > date || end_date < date){
   					status = 'PROGRESS';
   				}
-  				
+  				var id= Math.random();
+
   				lists= {
+  							'ID': id,
   							'TITLE': title, 
   							'DESCRIPTION': description , 
   							'START_DATE': start_date , 
@@ -69,34 +76,54 @@
   							'STATUS' : status
   					};
   				task.push(lists);
-  				var html= '<table cellspacing= "10" padding="5">' +
+
+  				var html= '<table class="table table-bordered">' +
+  						  '<thead>'+	
   						  '<tr>'+
-  						  '<td>Title</td>'+
-  						  '<td>Description</td>'+
-  						  '<td>Start Date</td>'+
-  						  '<td>End Date</td>'+
-  						  '<td>Status</td>'+
-  						  '</tr>'	
+  						  '<th>Title</th>'+
+  						  '<th>Description</th>'+
+  						  '<th>Start Date</th>'+
+  						  '<th>End Date</th>'+
+  						  '<th>Status</th>'+
+  						  '<th>Edit</th>'+
+  						  '</tr>'+
+  						  '</thead>'
+
 	  			for(var i =0; i<task.length; i++){
-	  				    html+="<tr>";
+	  					html+="<tr>";
 	        			html+="<td>"+task[i].TITLE+"</td>";
 	        			html+="<td>"+task[i].DESCRIPTION+"</td>";
 	       				html+="<td>"+task[i].START_DATE+"</td>";
 	       				html+="<td>"+task[i].END_DATE+"</td>";
-	       				html+="<td>"+task[i].STATUS+"</td>";
-	        			html+="</tr>";
-	  				
+	       				html+="<td class='status'>"+task[i].STATUS+"</td>";
+	       				html+="<td><input type='submit' value='Is task Completed?' onclick='edit("+task[i].ID+")' ></td>";
+	        			html+="</tr>"; 
 	  				}
 	  			html+="</table>";
 	  			document.getElementById('box').innerHTML= html;
-  				alert("Okay you have successfully added task.. Now Go and process the task");
-  			
+  				clearField();
+
+  				function clearField(){
+  				  document.getElementById('description').value='';
+  				  document.getElementById('title').value='';
+  				  document.getElementById('start_date').value='';
+  				  document.getElementById('end_date').value='';
+
+  				}
+  				
   			}
 
  		return false;
   	}
 
-
-
-
-  
+function edit(value){
+	// console.log(task);
+	for(var i=0;i<task.length;i++){
+		if(task[i].ID == value){
+			task[i].STATUS = 'DONE'	;
+			document.getElementsByClassName('status')[i].innerHTML= JSON.stringify(task[i].STATUS);
+		}
+		
+	}
+	alert("Wow!!! Congratulations!!! You completed your task");	
+}
