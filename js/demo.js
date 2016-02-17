@@ -8,8 +8,8 @@
 			description= document.getElementById('description').value,
 			start_date= document.getElementById('start_date').value,
   			end_date= document.getElementById('end_date').value,
+  			status = document.getElementById('status').value,
   			lists= {};
-  		
   		
   			var formValidate = validate();
 
@@ -33,7 +33,7 @@
 				  					alert("Please enter valid date");
 				  					flag = false;
 
-			  			} else if(end_date == ''){
+			  			} else if(end_date == ''){	
 			  				alert("Please specify your END date");
 			  				flag = false;
 
@@ -42,7 +42,10 @@
 			  				flag = false;
 
 			  			} else if(start_date > end_date){
-			  				alert("Ooops!!! Your end time is set before start time...!!! Can you please correct it?");	
+			  				alert("Ooops!!! Your end date is set before start date...! Can you please correct it?");	
+			  				flag = false;
+			  			} else if(status == ''){
+			  				alert("Please specify your task");
 			  				flag = false;
 			  			}
 			  			else{
@@ -54,17 +57,6 @@
   			
   			if(formValidate){
 
-  				var status;
-  				
-  				if(start_date==date){
-  					status = 'ACTIVE';
-  				}
-  				if(end_date==date){
-  					status = 'WARNING';
-  				}
-  				if(start_date > date || end_date < date){
-  					status = 'PROGRESS';
-  				}
   				var id= Math.random();
 
   				lists= {
@@ -84,8 +76,8 @@
   						  '<th>Description</th>'+
   						  '<th>Start Date</th>'+
   						  '<th>End Date</th>'+
-  						  '<th>Status</th>'+
-  						  '<th>Edit</th>'+
+  						  '<th>Current Status</th>'+
+  						  '<th>Edit your Status</th>'+	
   						  '</tr>'+
   						  '</thead>'
 
@@ -96,34 +88,46 @@
 	       				html+="<td>"+task[i].START_DATE+"</td>";
 	       				html+="<td>"+task[i].END_DATE+"</td>";
 	       				html+="<td class='status'>"+task[i].STATUS+"</td>";
-	       				html+="<td><input type='submit' value='Is task Completed?' onclick='edit("+task[i].ID+")' ></td>";
+	       				// html+="<td><input type='hidden' value='Mark Task as Complete' onclick='edit("+task[i].ID+")' class='edit-submit'></td>";
+	       				html+="<td><select class='change-status' onchange='edit("+task[i].ID+")'><option value=''>Please select your status:</option><option value='PENDING'>Pending</option> <option value='In PROGRESS'>In Progress</option> <option value='COMPLETED'>Completed</option></select> </td>";
 	        			html+="</tr>"; 
 	  				}
 	  			html+="</table>";
 	  			document.getElementById('box').innerHTML= html;
   				clearField();
-
-  				function clearField(){
-  				  document.getElementById('description').value='';
-  				  document.getElementById('title').value='';
-  				  document.getElementById('start_date').value='';
-  				  document.getElementById('end_date').value='';
-
-  				}
-  				
   			}
 
  		return false;
   	}
 
 function edit(value){
+
 	// console.log(task);
 	for(var i=0;i<task.length;i++){
 		if(task[i].ID == value){
-			task[i].STATUS = 'DONE'	;
-			document.getElementsByClassName('status')[i].innerHTML= JSON.stringify(task[i].STATUS);
+			var status= document.getElementsByClassName('change-status')[i].value;
+			if(task[i].STATUS == status ){
+				alert("Already you have set status");
+			} 
+				document.getElementsByClassName('status')[i].innerHTML= status;
+						
+			if(status == 'COMPLETED'){
+				document.getElementsByClassName('change-status')[i].disabled= true;
+				alert("Wow!!! Congratulations!!! You completed your task");	
+			}
+			// document.getElementsByClassName('edit-submit')[i].disabled = true;
+
 		}
-		
 	}
-	alert("Wow!!! Congratulations!!! You completed your task");	
+	
+
 }
+
+function clearField(){
+
+  		document.getElementById('description').value='';
+  		document.getElementById('title').value='';
+  	    document.getElementById('start_date').value='';
+  		document.getElementById('end_date').value='';
+
+  }

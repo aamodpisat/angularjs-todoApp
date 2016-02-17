@@ -31,7 +31,19 @@
 				<input type="date" id="end_date" class="form-control"><br>
 			</div><br>
 
-			<input type="submit" onclick="add()" value="Add Task" class="btn btn-default"><br><br>
+			<label for="status" class="control-label col-sm-2">Status:</label>
+			<div class="col-sm-10">	
+				  <select id="status">
+					      <option value="PENDING">PENDING</option>
+					      <option value="In PROGRESS">IN PROGRESS</option>						  
+				  </select>
+			</div>
+
+			<div>
+					<input type="submit" onclick="add()" value="Add Task" class="btn btn-default">
+					<input type="submit" onclick="clearField()" value="Reset Task" class="btn btn-default">
+			 </div>
+			
 		</div>
 
 		
