@@ -1,0 +1,106 @@
+#container {
+	width: 100%;
+}
+
+.wrapper {
+	
+	top:30px;
+	width: 960px;
+	margin: 0 auto;
+}
+
+/* Header */
+.header{
+	background-color: #FFF8F0;
+	height: auto;
+}
+
+.header h1 {
+	color: brown;
+	font-size: 40px;
+	padding-left: 350px;
+}
+
+/* Section */
+.section {
+	border-radius: 20px;
+	position: relative;
+	top: 5px;
+}
+
+/* Form */
+.form {	  	
+	border: 1px solid seagreen;
+	padding: 20px; 
+	margin-left: 264px;
+    margin-top: 15px;
+    width: 400px;
+}
+
+.form-labels { padding-bottom: 10px; }
+
+.form-labels label {
+	font-size: 20px;
+    color: rebeccapurple;
+}
+
+.form-labels span {
+	padding-left: 50px;	
+}
+
+input:focus{
+	border:1px solid red;
+}
+
+input[type="submit"] {
+	background-color: rgba(224, 224, 224, 0.37);
+	border: 1px solid blueviolet;
+	border-radius: 4px;
+	color: blue;
+    font-size: 17px;
+}	
+
+input[type="submit"]:hover{
+	cursor: pointer;
+	background-color: #C9A8EF;
+}	
+
+.add-task{
+	float: left;
+
+}
+
+.reset-task{
+	float: right;
+
+}
+
+/* Table Section */
+#box{
+	    margin: 15px;
+	    padding-top: 10px;
+}
+
+#box table {
+	border: 1px solid #BD78FF;
+	border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+}
+
+#box th {
+	font-weight: bold;
+    padding: 12px;
+}
+
+#box td{
+	padding: 10px;
+}
+
+#box tr:hover {
+	background-color: #EFEFEF;
+}
+
+select {
+	width: 175px;
+}

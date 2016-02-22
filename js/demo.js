@@ -69,7 +69,7 @@
   					};
   				task.push(lists);
 
-  				var html= '<table class="table table-bordered">' +
+  				var html= '<table class="table table-bordered" id="table">' +
   						  '<thead>'+	
   						  '<tr>'+
   						  '<th>Title</th>'+
@@ -77,7 +77,7 @@
   						  '<th>Start Date</th>'+
   						  '<th>End Date</th>'+
   						  '<th>Current Status</th>'+
-  						  '<th>Edit your Status</th>'+	
+  						  '<th>Edit your Status</th>'+
   						  '</tr>'+
   						  '</thead>'
 
@@ -89,7 +89,7 @@
 	       				html+="<td>"+task[i].END_DATE+"</td>";
 	       				html+="<td class='status'>"+task[i].STATUS+"</td>";
 	       				// html+="<td><input type='hidden' value='Mark Task as Complete' onclick='edit("+task[i].ID+")' class='edit-submit'></td>";
-	       				html+="<td><select class='change-status' onchange='edit("+task[i].ID+")'><option value=''>Please select your status:</option><option value='PENDING'>Pending</option> <option value='In PROGRESS'>In Progress</option> <option value='COMPLETED'>Completed</option></select> </td>";
+	       				html+="<td><select class='change-status' onchange='edit("+task[i].ID+")' style='background-color: seashell;'><option value=''>Please select your status:</option><option value='PENDING'>PENDING</option> <option value='IN PROGRESS'>IN PROGRESS</option> <option value='COMPLETED'>COMPLETED</option></select> </td>";
 	        			html+="</tr>"; 
 	  				}
 	  			html+="</table>";
@@ -100,6 +100,7 @@
  		return false;
   	}
 
+//Edit task
 function edit(value){
 
 	// console.log(task);
@@ -114,6 +115,8 @@ function edit(value){
 			if(status == 'COMPLETED'){
 				document.getElementsByClassName('change-status')[i].disabled= true;
 				alert("Wow!!! Congratulations!!! You completed your task");	
+				// document.getElementById('table').deleteRow(i+1);
+				
 			}
 			// document.getElementsByClassName('edit-submit')[i].disabled = true;
 
@@ -123,6 +126,7 @@ function edit(value){
 
 }
 
+//Clear Field Values
 function clearField(){
 
   		document.getElementById('description').value='';

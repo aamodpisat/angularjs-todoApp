@@ -2,52 +2,74 @@
 <html>
 <head>
 	<title>Todolist App in directory</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/default.css">
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/demo.js"></script>
 </head>
 <body>
 	
-		<div class="form-group" role="form" style="width:960px; margin: 0 auto;">
-			<h2 align="center">  TodoLists App </h2>
-			<label for="title" class="control-label col-sm-2">Title:</label>
-			<div class="col-sm-10">
-				 <input type="text"  placeholder="enter title" id="title" class="form-control">
-			</div><br>
-
-			 <label for="description" class="control-label col-sm-2">Description:</label>
-			 <div class="col-sm-10">
-			 	<input type="textarea" placeholder="Enter description" id="description" class="form-control">
-			 </div><br>
-
-			 <label for="start_date" class="control-label col-sm-2">Start date: </label>
-			 <div class="col-sm-10">
-			 	<input type="date" id="start_date" class="form-control">
-			 </div><br>
-
-			<label for="end_date" class="control-label col-sm-2">End date: </label>
-			<div class="col-sm-10">
-				<input type="date" id="end_date" class="form-control"><br>
-			</div><br>
-
-			<label for="status" class="control-label col-sm-2">Status:</label>
-			<div class="col-sm-10">	
-				  <select id="status">
-					      <option value="PENDING">PENDING</option>
-					      <option value="In PROGRESS">IN PROGRESS</option>						  
-				  </select>
+	<div id="container">
+		<div class="wrapper">
+		<!-- Header Section Starts  -->
+			<div class="header">
+				<h1> TodoLists App </h1>
 			</div>
+		<!-- Header Section Ends -->
 
-			<div>
-					<input type="submit" onclick="add()" value="Add Task" class="btn btn-default">
-					<input type="submit" onclick="clearField()" value="Reset Task" class="btn btn-default">
-			 </div>
+		<!-- Main Section Starts  -->
+			<div class="section">
+				<div class="form">
+							<div class="form-labels">
+								<label for="title">Title:</label>
+								<span>
+									<input type="text" id="title"> 
+								</span>
+							</div>
+							<div class="form-labels">
+								<label for="description">Description:</label>
+								<span>
+									<input type="text" id="description">
+								</span>
+							</div>
+							<div class="form-labels">
+								<label for="start_date">Start Date:</label>
+								<span>
+									<input type="date" id="start_date">
+								</span>
+							</div>
+							<div class="form-labels">
+								<label for="end_date">End Date:</label>
+								<span>
+									<input type="date" id="end_date">
+								</span>
+							</div>
+							<div class="form-labels">
+								<label for="status">Status:</label>
+								<span>
+									<select id="status">
+										<option value="PENDING">PENDING</option>
+										<option value="IN PROGRESS">IN PROGRESS</option>
+									</select>
+								</span>
+							</div>
+							<div class="form-labels">
+								<input type="submit" value="ADD TASK" onclick="add()" class="add-task">
+								<input type="submit" value="RESET" onclick="clearField()" class="reset-task">
+							</div>	
+
+					</div>
+
+					<!-- Table Section Starts  -->
+						<div id="box">
+						</div>
+					<!-- Table Section Ends  -->
+
+				</div>
+		<!-- Main Section Ends -->
+
+		</div>
+	</div>
 			
-		</div>
-
-		
-		<div id= "box">
-		</div>
 </body>
 </html>
